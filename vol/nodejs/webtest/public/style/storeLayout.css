@@ -1,0 +1,340 @@
+/* public/style/storeLayout.css */
+
+/* ========================================================================= */
+/* 共通スタイル: 背景色の設定 (すべてのページに適用) */
+/* ========================================================================= */
+body {
+    background-color: #e6ffe6; /* 薄いグリーンに統一 */
+    margin: 0;
+    padding: 20px;
+    font-family: sans-serif;
+}
+
+/* ========================================================================= */
+/* StoreIndex.ejs (店舗一覧) 用スタイル */
+/* ========================================================================= */
+
+.header-controls {
+    display: flex;
+    justify-content: flex-end; /* 検索フォームを右端に寄せる */
+    align-items: center;
+}
+.genre-links {
+    margin: 20px auto;
+    max-width: 600px; 
+    text-align: center;
+}
+.genre-row {
+    margin-bottom: 10px;
+}
+.genre-row a {
+    margin: 0 10px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #333;
+    background-color: white;
+    display: inline-block;
+}
+.genre-row a.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+/* ========================================================================= */
+/* StoreReview.ejs / StoreDetail.ejs (店舗詳細) 用スタイル */
+/* ========================================================================= */
+
+.container {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white; 
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.left-section {
+    flex: 2; 
+    padding-right: 30px;
+    border-right: 1px solid #eee;
+}
+
+.right-section {
+    flex: 1; 
+    padding-left: 30px;
+    /* 右セクション自体が長くなりすぎないよう調整 */
+    display: flex;
+    flex-direction: column;
+}
+
+.title-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #38761d; 
+    padding-bottom: 10px;
+}
+
+.title-wrapper h1 {
+    margin: 0;
+    font-size: 1.8em;
+    color: #38761d;
+}
+
+.average-score {
+    margin-left: 20px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #ffaa00;
+}
+
+.score-value {
+    font-size: 0.7em;
+    color: #666;
+    margin-left: 5px;
+}
+
+.star-rating {
+    font-size: 1em;
+    color: gold;
+}
+.star-full {
+    color: gold;
+}
+.star-empty {
+    color: #ccc;
+}
+.star-half-container {
+    display: inline-block;
+    position: relative;
+    width: 0.5em; 
+    overflow: hidden;
+    color: gold;
+}
+.star-half-container::before {
+    content: '★';
+    position: absolute;
+    width: 1em; 
+    overflow: hidden;
+}
+.star-half-container::after {
+    content: '★';
+    color: #ccc; 
+    position: absolute;
+    left: 0;
+    z-index: -1;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+input[type="text"], input[type="password"], select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #38761d; 
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+button[type="submit"]:hover {
+    background-color: #2a5b14;
+}
+
+.store-image-wrapper {
+    margin-top: 15px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    position: relative; 
+    background-color: #e6ffe6;
+}
+
+.store-image-aspect-ratio {
+    width: 100%;
+    padding-top: var(--aspect-ratio); 
+    position: relative;
+    overflow: hidden;
+}
+
+.store-image-aspect-ratio img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: left center; 
+}
+
+.menu-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.menu-table th, .menu-table td {
+    border: 1px solid #eee;
+    padding: 8px 12px;
+    text-align: left;
+}
+
+.menu-table th {
+    background-color: #f4f4f4;
+}
+
+/* 口コミリストのスタイル (修正：スクロールを追加) */
+.review-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    /* ★追加：スクロールの設定 */
+    max-height: 600px;    /* 600pxを超えたらスクロール */
+    overflow-y: auto;     /* 縦方向にスクロールバーを出す */
+    padding-right: 10px;  /* スクロールバーとの重なり防止 */
+    border: 1px solid #f0f0f0;
+    border-radius: 5px;
+}
+
+/* スクロールバーのデザインを少し細くする (任意) */
+.review-list::-webkit-scrollbar {
+    width: 8px;
+}
+.review-list::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 10px;
+}
+
+.review-item {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #fff; 
+    border-radius: 5px;
+}
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.review-score {
+    font-weight: bold;
+    color: #ffaa00;
+    font-size: 1.2em;
+}
+.review-comment {
+    margin-top: 5px;
+    white-space: pre-wrap; 
+}
+
+/* ソートボタンのスタイル */
+.sort-buttons {
+    margin-top: 10px;
+}
+.sort-buttons button {
+    padding: 8px 15px;
+    margin-right: 10px;
+    cursor: pointer;
+    border: 1px solid #38761d;
+    background-color: #fff;
+    color: #38761d;
+    border-radius: 4px;
+}
+.sort-buttons button.active {
+    background-color: #38761d;
+    color: white;
+    font-weight: bold;
+}
+
+textarea {
+    vertical-align: top;
+}
+
+/* 口コミいいね機能のスタイル */
+.review-actions {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    padding-top: 5px;
+    border-top: 1px solid #eee; 
+}
+
+.like-button {
+    background: none;
+    border: 1px solid #ccc;
+    color: #666;
+    padding: 3px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.like-button.liked {
+    color: #e31b23;
+    border-color: #e31b23;
+    background-color: #fff0f0;
+}
+
+/* --- 店舗詳細ページ：タイトル周りのレイアウト調整 --- */
+.title-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd; /* 視認性を上げるための境界線 */
+    margin-bottom: 20px;
+}
+
+/* タイトル右側の評価と保存ボタンを横並びで整える */
+.title-wrapper > div {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* 星評価の表示を少し強調 */
+.average-score {
+    font-size: 1.1em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+/* ボタンのデザインをモダンにする */
+.title-wrapper button {
+    padding: 6px 12px;
+    font-size: 0.85em;
+    cursor: pointer;
+    border-radius: 15px;
+    transition: background-color 0.2s;
+}
+
+/* レビュー一覧のリストスタイル */
+.review-list {
+    list-style: none;
+    padding: 0;
+}
+
+.review-item {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}

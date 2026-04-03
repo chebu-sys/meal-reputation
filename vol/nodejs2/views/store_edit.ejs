@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title><%= store.name %> の店舗情報編集</title>
+    
+    <%# 既存のstore.cssは残し、レイアウト調整のためのCSSを新しく追加 %>
+    <link rel="stylesheet" href="/stylesheets/store.css">
+    <link rel="stylesheet" href="/stylesheets/store_edit_layout.css">
+    
+</head>
+<body>
+    <header class="header-container">
+        <a href="/dashboard" class="header-link">ダッシュボードへ戻る</a>
+        <a href="/stores/<%= store.store_id %>" class="header-link">詳細画面へ戻る</a>
+        <a href="/Clogout" class="header-link">ログアウト</a>
+    </header>
+    
+    <div class="main-content-wrapper">
+        <h1>店舗情報編集</h1>
+        
+        <%# サーバーから渡されたエラーメッセージ（message）があれば表示 %>
+        <% if (typeof message !== 'undefined' && message) { %>
+            <%# インラインスタイルの一部をCSSに移動しましたが、color:redはそのまま残します %>
+            <p style="color:red; text-align: center; font-weight: bold;"><%= message %></p>
+        <% } %>
+        
+        <form method="POST" action="/stores/<%= store.store_id %>/edit" enctype="multipart/form-data">
+            <div>
+                <label for="name">店舗名：</label>
+                <input type="text" id="name" name="name" value="<%= store.name %>" required>
+            </div>
+            <div>
+                <label for="address">住所：</label>
+                <input type="text" id="address" name="address" value="<%= store.address %>">
+            </div>
+            <div>
+                <label for="phone_number">電話番号：</label>
+                <input type="text" id="phone_number" name="phone_number" value="<%= store.phone_number %>">
+            </div>
+            
+            <div>
+                <label for="genre">ジャンル：</label>
+                <select id="genre" name="genre">
+                    <%# store.genreが空（NULL）の場合は「選択してください」をselectedにする %>
+                    <option value="" <%= !store.genre ? 'selected' : '' %>>選択してください</option>
+                    <option value="和食" <%= store.genre === '和食' ? 'selected' : '' %>>和食</option>
+                    <option value="洋食" <%= store.genre === '洋食' ? 'selected' : '' %>>洋食</option>
+                    <option value="中華料理" <%= store.genre === '中華料理' ? 'selected' : '' %>>中華料理</option>
+                    <option value="アジア" <%= store.genre === 'アジア' ? 'selected' : '' %>>アジア</option>
+                    <option value="カフェ" <%= store.genre === 'カフェ' ? 'selected' : '' %>>カフェ</option>
+                    <option value="バー" <%= store.genre === 'バー' ? 'selected' : '' %>>バー</option>
+                    <option value="その他レストラン" <%= store.genre === 'その他レストラン' ? 'selected' : '' %>>その他レストラン</option>
+                </select>
+            </div>
+            
+            <div>
+                <label for="image">イメージ画像：</label>
+                <input type="file" id="image" name="image">
+            </div>
+            
+            <%# 既存の画像が存在する場合、画像と削除オプションを表示 %>
+            <% if (store.image_url) { %>
+                <div class="current-image-section">
+                    <p>現在の画像:</p>
+                    <img src="<%= store.image_url %>" alt="現在の画像"><br>
+                    <label>
+                        <input type="checkbox" name="delete_image" value="on">画像を削除する
+                    </label>
+                </div>
+            <% } %>
+            
+            <div>
+                <label for="description">お店紹介：</label>
+                <textarea id="description" name="description"><%= store.description || '' %></textarea>
+            </div>
+            <div>
+                <button type="submit">保存</button>
+            </div>
+        </form>
+        
+        <div class="delete-section">
+            <hr>
+            <%# 店舗削除フォーム %>
+            <form method="POST" action="/stores/<%= store.store_id %>/delete" onsubmit="return confirm('本当にこの店舗を削除しますか？\n削除すると、すべてのメニューと評価も削除されます。');">
+                <button type="submit" class="delete-store-button">店舗を削除</button>
+            </form>
+        </div>
+        
+    </div>
+</body>
+</html>

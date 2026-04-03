@@ -1,0 +1,73 @@
+
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: url('/pictures/login_lunch.png') no-repeat center center/cover;
+      /*background: rgba(0, 0, 0, 0);*/
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+    }
+    .login-box {
+      background: rgba(109, 196, 218, 0.9);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 320px;
+      backdrop-filter: blur(10px);
+    }
+    .login-box h2 {
+      margin-bottom: 20px;
+      color: #e27d60;
+      font-size: 28px;
+    }
+    .login-box input[type="text"],
+    .login-box input[type="password"] {
+      width: 90%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 2px solid #e8a87c;
+      border-radius: 10px;
+      background: #f8f8f8;
+    }
+    .login-box input[type="submit"] {
+      width: 80%;
+      padding: 12px;
+      margin-top: 20px;
+      background: #e27d60;
+      border: none;
+      color: white;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .login-box input[type="submit"]:hover {
+      background: #cf6b4b;
+    }
+    .small-text {
+      margin-top: 15px;
+      font-size: 12px;
+      color: #666;
+    }
+    a {
+      color: #e27d60;
+      text-decoration: none;
+    }
+
+  .box12{
+      padding: 0.5em 1em;
+      margin: 2em 0;
+      color: #5989cf;
+      background: #c6e4ff;
+      border-bottom: solid 6px #aac5de;
+      border-radius: 9px;
+      text-align: center;
+  }
+  .box12 p {
+      margin: 0; 
+      padding: 0;
+  }

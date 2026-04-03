@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>企業新規登録</title>
+  
+  <link rel="stylesheet" href="/stylesheets/form_layout.css">
+  <link rel="stylesheet" href="/stylesheets/login_specific.css">
+  
+</head>
+<body>
+  <div class="main-content-wrapper">
+    <h1>企業新規登録</h1>
+
+    <% if (typeof message !== 'undefined' && message) { %>
+      <p style="color: red;"><%= message %></p>
+    <% } %>
+
+    <form action="/register" method="POST">
+      
+      <%# ログインID入力欄 (変更なし) %>
+      <div>
+        <label for="login_id">ログインID：</label>
+        <input 
+type="text" id="login_id" name="login_id" pattern="[a-zA-Z0-9]{6,10}" title="ログインIDは6文字以上10文字以内の半角英数字で入力してください。" required>
+      </div>
+      
+      <%# ★★★ 修正箇所: ラベルと入力/ボタンのコンテナを分ける ★★★ %>
+      <div>
+        <label for="password">パスワード：</label>
+        
+        <%# ★★★ input-containerの幅(250px)はform_layout.cssのinput幅と一致。中央寄せにする ★★★ %>
+        <div class="input-container" style="margin: 0 auto;"> 
+            <input 
+type="password" id="register_password" name="password" pattern="^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};':\\|,.<>\/?]).{8,20}$" title="パスワードは8文字以上20文字以内の半角英数字と特殊文字を含めてください。" required>
+            
+            <button type="button" class="toggle-password" onclick="togglePasswordVisibility('register_password', this)">👁️</button>
+        </div>
+      </div>
+    
+    <button type="submit">新規登録</button>
+    </form>
+
+    <p>
+      <a href="/Cologin">ログイン画面へ戻る</a>
+    </p>
+  </div>
+  
+  <script src="/javascripts/login.js"></script>
+</body>
+</html>

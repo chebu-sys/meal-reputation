@@ -1,0 +1,48 @@
+/*
+ * public/stylesheets/store.css (修正・追記)
+ */
+
+/* body要素に適用されるスタイル */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* ★★★ 新規追加: メインコンテンツのラッパー (中央寄せの核) ★★★ */
+.main-content-wrapper {
+    /* ページの最大幅を制限 (PCで広がりすぎないように 800px を設定) */
+    max-width: 800px; 
+    /* 左右のマージンをautoに設定することで、ブロック要素を画面中央に配置 */
+    margin-left: auto;
+    margin-right: auto;
+    /* ページ端からの余白 */
+    padding: 20px;
+}
+/* ★★★ ここまで新規追加 ★★★ */
+
+
+/*
+ * ヘッダー全体をラップするコンテナ 
+ */
+.header-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+/*
+ * ヘッダー内の各リンクに適用されるスタイル 
+ */
+.header-link {
+    margin-left: 10px;
+}
+
+/*
+ * 複数のボタンをグループ化するためのコンテナ 
+ */
+.button-group {
+    display: flex; 
+    gap: 20px;     
+}

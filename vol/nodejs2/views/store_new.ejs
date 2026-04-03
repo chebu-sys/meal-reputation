@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>店舗新規登録</title>
+    
+    <%# 既存のstore.cssは残し、レイアウト調整のためのCSSを新しく追加 %>
+    <link rel="stylesheet" href="/stylesheets/store.css">
+    <link rel="stylesheet" href="/stylesheets/store_new_layout.css">
+    
+</head>
+<body>
+    <%# ページ上部のヘッダーコンテナ %>
+    <header class="header-container">
+        <a href="/dashboard" class="header-link">ダッシュボードへ戻る</a>
+        <a href="/Clogout" class="header-link">ログアウト</a>
+    </header>
+    
+    <%# 中央寄せコンテナ開始 %>
+    <div class="main-content-wrapper">
+        <h1>店舗新規登録</h1>
+        
+        <%# 店舗新規登録フォーム。画像アップロードのため`enctype`属性を指定 %>
+        <form method="POST" action="/stores/new" enctype="multipart/form-data">
+            <div>
+                <label for="name">店舗名：</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div>
+                <label for="address">住所：</label>
+                <input type="text" id="address" name="address">
+            </div>
+            <div>
+                <label for="phone_number">電話番号：</label>
+                <input type="text" id="phone_number" name="phone_number">
+            </div>
+            <div>
+                <label for="genre">ジャンル：</label>
+                <select id="genre" name="genre">
+                    <option value="">選択してください</option>
+                    <option value="和食">和食</option>
+                    <option value="洋食">洋食</option>
+                    <option value="中華料理">中華料理</option>
+                    <option value="アジア">アジア</option>
+                    <option value="カフェ">カフェ</option>
+                    <option value="バー">バー</option>
+                    <option value="その他レストラン">その他レストラン</option>
+                </select>
+            </div>
+            <div>
+                <label for="image">イメージ画像：</label>
+                <input type="file" id="image" name="image" accept="image/*">
+            </div>
+            <div>
+                <label for="description">お店紹介：</label>
+                <textarea id="description" name="description"></textarea>
+            </div>
+            <div>
+                <button type="submit">登録</button>
+            </div>
+        </form>
+    </div>
+    <%# 中央寄せコンテナ終了 %>
+</body>
+</html>

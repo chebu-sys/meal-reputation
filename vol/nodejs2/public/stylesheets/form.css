@@ -1,0 +1,42 @@
+/* form.css */
+
+/* フォーム入力要素の共通スタイル */
+form input {
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* フォームの各行のコンテナ（主に新規登録・編集画面用） */
+form div {
+    margin-bottom: 15px;
+}
+
+/* ラベルのスタイル（主に新規登録・編集画面用） */
+form label {
+    width: 250px;
+    display: block; 
+    margin: 0 auto 5px auto;
+    text-align: left;
+    font-weight: bold;
+}
+
+/* フォーム内のSubmitボタンの共通スタイル */
+form button[type="submit"] {
+    width: 250px;
+    display: block;
+    /* 新規登録・編集画面のデフォルトマージン */
+    margin: 20px auto 10px auto; 
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #5cb85c;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+}
+
+form button[type="submit"]:hover {
+    background-color: #4cae4c;
+}

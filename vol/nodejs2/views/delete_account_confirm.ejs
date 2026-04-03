@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>アカウント削除の確認</title>
+    <link rel="stylesheet" href="/stylesheets/base.css">
+    <link rel="stylesheet" href="/stylesheets/dashboard.css">
+    <link rel="stylesheet" href="/stylesheets/delete_specific.css">
+</head>
+<body>
+    <header class="header-container">
+        <a href="/dashboard" class="header-link">ダッシュボードへ戻る</a>
+        <a href="/Clogout" class="header-link">ログアウト</a>
+    </header>
+    
+    <div class="main-content-wrapper with-header">
+        <h1>アカウント削除の確認</h1>
+        <p>本当にアカウントを削除してもよろしいですか？</p>
+        <p>この操作は元に戻すことができません。このアカウントに関連するすべての店舗情報も完全に削除されます。</p>
+        <br>
+     
+        <div class="button-group">
+            <form method="GET" action="/dashboard">
+                <button type="submit">いいえ、戻ります</button>
+            </form>
+            
+            <form method="POST" action="/delete-account">
+                <button type="submit">はい、削除します</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<%
+    // 画像比率計算ロジック
+    let aspectRatioPadding = '56.25%';  
+    if (store.image_width && store.image_height && store.image_width > 0) {
+        const ratio = (store.image_height / store.image_width) * 100;
+        aspectRatioPadding = ratio.toFixed(2) + '%';
+    }
+%>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>店舗詳細管理 - <%= store.name %></title>
+    
+    <%# ★★★ 修正箇所: 静的スタイルを外部ファイルに分離 ★★★ %>
+    <link rel="stylesheet" href="/stylesheets/store_detail_layout.css">
+    
+    <%# ★★★ 修正箇所: 動的なCSSプロパティのみをここに残す ★★★ %>
+<style>
+/* 新規: EJSの値をCSS変数としてルート要素に定義 */
+        :root {
+            --aspect-ratio-padding-value: <%= aspectRatioPadding %>;
+        }
+
+        .store-image-container {
+            /* CSS変数の参照は正しいCSS構文なので波線が出ません */
+            padding-top: var(--aspect-ratio-padding-value);
+        }
+        /* インラインスタイルを削除したため、button/aの基本スタイルを付与 */
+        .action-buttons a button {
+            background-color: #007bff;
+            color: white;
+            border: 1px solid #007bff;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .action-buttons a button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><%= store.name %> の管理詳細</h1>
+        
+        <div class="action-buttons" style="margin-bottom: 20px;">
+            <a href="/stores/<%= store.store_id %>/edit">
+                <button type="button">店舗情報を編集</button>
+            </a>
+            <a href="/stores/<%= store.store_id %>/menus/new">
+                <button type="button">メニュー新規追加</button>
+            </a>
+            <a href="/dashboard">
+                <button type="button">ダッシュボードに戻る</button>
+            </a>
+        </div>
+
+        <hr>
+
+        <h2>店舗情報</h2>
+        <p><strong>住所:</strong> <%= store.address %></p>
+        <p><strong>電話番号:</strong> <%= store.phone_number %></p>
+        <p><strong>説明:</strong> <%= store.description %></p>
+
+        <% if (store.image_url) { %>
+            <h3>店舗画像</h3>
+            <div class="store-image-container">
+                <img src="<%= store.image_url %>" alt="<%= store.name %>の画像" class="store-image">
+            </div>
+        <% } %>
+
+        <hr>
+
+        <h2>メニュー一覧</h2>
+        <% if (menus && menus.length > 0) { %>
+            <table class="menu-table">
+                <thead>
+                    <tr>
+                        <th>メニュー名</th>
+                        <th>価格 (円)</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% menus.forEach(menu => { %>
+                        <tr>
+                            <td><%= menu.menu_name %></td>
+                            <td><%= menu.price ? menu.price.toLocaleString() : '---' %></td>
+                            <td>
+                                <a href="/stores/<%= store.store_id %>/menus/<%= menu.menu_id %>/edit">編集</a> | 
+                                <form action="/stores/<%= store.store_id %>/menus/<%= menu.menu_id %>/delete" method="POST" onsubmit="return confirm('本当に削除しますか？');">
+                                    <button type="submit">削除</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p>この店舗のメニューは登録されていません。</p>
+        <% } %>
+
+    </div>
+</body>
+</html>

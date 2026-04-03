@@ -1,0 +1,56 @@
+/* login_specific.css */
+
+/* 入力コンテナ: ラベルを使わないログイン画面での入力欄とトグルボタンの配置用 */
+.input-container {
+    position: relative;
+    width: 250px;
+    /* ログインIDとパスワードの間のマージン */
+    margin: 0 auto 10px auto;
+}
+
+/* input-container 内での input の幅を 100% に上書き */
+.input-container input {
+    width: 100%;
+}
+
+/* パスワード表示切り替えボタンのスタイル */
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 1.2em; /* アイコンサイズを調整 */
+    padding: 0 5px;
+}
+
+/* ログインボタンの独自マージン調整 (form.css の margin を上書き) */
+.main-content-wrapper form button[type="submit"] {
+    margin-top: 10px; 
+}
+
+/* --- アカウント削除メッセージ表示のための追加スタイル --- */
+
+/* メッセージコンテナの基本スタイルを定義 */
+.main-content-wrapper .message {
+    /* base.css の .main-content-wrapper p の中央寄せは適用されている */
+    
+    /* ★★★ 最終調整: h1との間に余白を作り、フォームとの間の余白を小さくする ★★★ */
+    margin-top: 10px;    
+    margin-bottom: 10px; 
+    padding: 0;
+    line-height: 1.2; /* 行の高さを調整して、余分なスペースを削減 */
+}
+
+/* 成功メッセージのスタイル */
+.main-content-wrapper .success-message {
+    color: green; 
+    font-weight: bold;
+}
+
+/* エラーメッセージのスタイル (既存のインラインスタイルを置き換える) */
+.main-content-wrapper .error-message {
+    color: red;
+}

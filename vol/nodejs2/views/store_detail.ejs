@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title><%= store.name %> の店舗情報</title>
+    <link rel="stylesheet" href="/stylesheets/store.css">
+</head>
+<body>
+    <header class="header-container">
+        <a href="/dashboard" class="header-link">ダッシュボードへ戻る</a>
+        <a href="/Clogout" class="header-link">ログアウト</a>
+    </header>
+    <h1>店舗情報</h1>
+    <%# 店舗の画像URL（image_url）が存在する場合のみ画像を表示 %>
+    <% if (store.image_url) { %>
+        <img src="<%= store.image_url %>" style="max-width:300px;">
+    <% } %>
+    <%# 店舗情報の表示 %>
+    <p><strong>店舗名:</strong> <%= store.name %></p>
+    <p><strong>住所:</strong> <%= store.address %></p>
+    <p><strong>電話番号:</strong> <%= store.phone_number %></p>
+    
+    <%# ★ 変更: ジャンル（genre）が存在する場合のみ表示 ★ %>
+    <% if (store.genre) { %>
+        <p><strong>ジャンル:</strong> <%= store.genre %></p>
+    <% } %>
+    
+    <%# お店紹介（description）が存在する場合のみ表示 %>
+    <% if (store.description) { %>
+        <p><strong>お店紹介:</strong> <%= store.description %></p>
+    <% } %>
+
+    <%# 店舗編集ページへのリンク %>
+    <a href="/stores/<%= store.store_id %>/edit">編集</a>
+    
+
+    <hr>
+
+    <h2>メニュー</h2>
+    <%# メニュー新規登録ページへのリンク %>
+    <a href="/stores/<%= store.store_id %>/menus/new">メニューを登録</a>
+
+    <%# メニュー配列（menus）が存在し、かつ1件以上ある場合のみリストを表示 %>
+    <% if (menus && menus.length > 0) { %>
+        <ul>
+            <%# メニュー配列の各要素をループ処理し、メニュー名と値段を表示 %>
+            <% menus.forEach(menu => { %>
+                <li>
+                    <strong><%= menu.menu_name %></strong>：<%= menu.price %>円
+                    <%# 各メニューの編集ページへのリンク %>
+                    <a href="/stores/<%= store.store_id %>/menus/<%= menu.menu_id %>/edit">編集</a>
+                </li>
+            <% }); %>
+        </ul>
+    <% } else { %>
+        <%# メニューが登録されていない場合のメッセージ %>
+        <p>メニューはまだ登録されていません。</p>
+    <% } %>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title><%= menu.menu_name %> の編集 - <%= store.name %></title>
+    <style>
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="/dashboard">ダッシュボードへ戻る</a> | 
+            <a href="/stores/<%= store.store_id %>"><%= store.name %> の詳細へ戻る</a>
+        </header>
+        
+        <h1><%= store.name %> のメニュー編集</h1>
+        <h2 style="font-weight: normal;">メニュー: <%= menu.menu_name %></h2>
+
+        <form action="/stores/<%= store.store_id %>/menus/<%= menu.menu_id %>/edit" method="POST">
+            
+            <label for="menu_name">メニュー名:</label>
+            <input type="text" id="menu_name" name="menu_name" value="<%= menu.menu_name %>" required><br><br>
+
+            <label for="price">価格 (円):</label>
+            <input type="number" id="price" name="price" value="<%= menu.price %>" required min="0" step="1"><br><br>
+
+            <button type="submit">メニュー情報を更新</button>
+        </form>
+        
+        <hr>
+        
+        <form action="/stores/<%= store.store_id %>/menus/<%= menu.menu_id %>/delete" method="POST" onsubmit="return confirm('本当にこのメニューを削除しますか？');">
+            <button type="submit" style="background-color: #f44336; color: white; border: none; padding: 10px 15px; cursor: pointer;">メニューを削除</button>
+        </form>
+    </div>
+</body>
+</html>

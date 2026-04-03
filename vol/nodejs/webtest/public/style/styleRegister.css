@@ -1,0 +1,114 @@
+/* 共通背景設定 */
+body {
+    background-image: url('/pictures/19210967_1000_0.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
+  
+  /* 半透明ウィンドウデザイン */
+  .register-box {
+    background: rgba(255, 255, 255, 0.25) !important;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+    color: white !important;
+    padding: 30px;
+    width: 400px;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  
+  /* ログイン画面と共通のタイトル影 */
+  .register-box h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 25px;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.8) !important;
+  }
+  
+  /* フォームレイアウト */
+  .input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  /* 入力欄：文字色を白に固定 */
+  .register-box input[type="text"],
+  .register-box input[type="password"] {
+    width: 100%;
+    padding: 12px !important;
+    padding-right: 40px !important;
+    background: rgba(0, 0, 0, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    border-radius: 8px !important;
+    color: #ffffff !important; /* 入力文字：白 */
+    font-weight: bold;
+    box-sizing: border-box;
+    outline: none;
+    font-size: 1rem;
+  }
+  
+  /* プレースホルダー（ヒント文字）も白系 */
+  .register-box input::placeholder {
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+  
+  /* 目のアイコン位置 */
+  .toggle-password {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: white;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* オレンジボタン：適切なサイズに調整 */
+  .register-box input[type="submit"] {
+    display: inline-block;
+    width: auto !important;
+    min-width: 120px;
+    padding: 10px 30px !important;
+    background-color: #ff7f50 !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-weight: bold !important;
+    font-size: 1rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    cursor: pointer;
+    margin-top: 10px;
+    box-shadow: 0 4px 0 #d45d31 !important;
+    transition: 0.1s;
+  }
+  
+  .register-box input[type="submit"]:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #d45d31 !important;
+  }
+  
+  /* リンクテキスト */
+  .small-text a {
+    color: white !important;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8) !important;
+    text-decoration: none;
+    font-size: 14px;
+  }

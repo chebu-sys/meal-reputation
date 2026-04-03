@@ -1,0 +1,94 @@
+/* dashboard.css */
+
+/* ヘッダー全体をラップするコンテナ */
+.header-container {
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+    background-color: white; 
+}
+
+/* ヘッダー内の各リンク */
+.header-link {
+    margin-left: 10px;
+}
+
+/* ヘッダーを持つページ用のラッパー上書き（編集、削除確認、ダッシュボード） */
+.main-content-wrapper.with-header {
+    /* base.css の margin: 50px auto を上書きし、ヘッダーの下にぴったり付くように調整 */
+    margin: 0 auto; 
+}
+
+/* ダッシュボード（店舗一覧）専用の幅広レイアウト */
+.main-content-wrapper.dashboard {
+    max-width: 800px; /* 幅を広く設定 */
+    padding: 20px; 
+}
+
+/* ★修正: ダッシュボード内のテキストを左寄せにする設定を強制的に追加 (base.cssを上書き) */
+.main-content-wrapper.dashboard h1,
+.main-content-wrapper.dashboard h2,
+.main-content-wrapper.dashboard p {
+    text-align: left; 
+}
+/* ★修正箇所終わり ★ */
+
+/* リストスタイル */
+ul {
+    list-style: disc; 
+    padding-left: 20px;
+    text-align: left; /* ダッシュボード内のリストは左寄せ */
+}
+
+li {
+    margin-bottom: 5px;
+}
+
+/* 店舗一覧の各アイテム */
+.store-list-item {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border-radius: 4px;
+}
+
+.store-list-item-info {
+    flex-grow: 1;
+}
+
+.store-list-item-info a {
+    text-align: left; 
+    font-weight: bold;
+    color: #007bff;
+    text-decoration: none;
+    display: block; 
+}
+
+.store-list-item-info a:hover {
+    text-decoration: underline;
+}
+
+/* 「店舗を追加」ボタンなどの汎用ボタン */
+.add-button {
+    display: block;
+    width: 200px;
+    margin: 30px 0 20px 0; /* 左寄せ */
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.add-button:hover {
+    background-color: #0056b3;
+}

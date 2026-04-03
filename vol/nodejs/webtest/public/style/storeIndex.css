@@ -1,0 +1,148 @@
+/* ==========================================
+   StoreIndex.ejs 専用スタイル (バックアップ完全版)
+   ========================================== */
+
+/* 全体・レイアウト */
+body { 
+    background-image: url('/pictures/kabegami.png'); 
+    background-size: cover; 
+    background-attachment: fixed; 
+    background-position: center;
+    font-family: sans-serif; 
+    margin: 0; 
+    display: flex; 
+    justify-content: center; 
+}
+
+/* 壁紙の上でも文字が見やすいよう、白背景を85%の不透明度で敷いています */
+.main-container { 
+    width: 98%; 
+    max-width: 1400px; 
+    padding: 20px; 
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.85); 
+    min-height: 100vh;
+}
+
+.header-container { display: flex; flex-direction: column; align-items: center; margin-bottom: 20px; }
+.project-title { color: #2d7d12; font-size: 2.2rem; margin-bottom: 5px; font-weight: bold; }
+.subtitle { color: #333; font-size: 0.9rem; margin-bottom: 15px; }
+
+/* ヘッダー右上の検索・ボタン類 */
+.header-top-right {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 10px;
+}
+
+.search-box { margin-bottom: 8px; }
+.search-box input { padding: 6px; border: 1px solid #ccc; border-radius: 4px; }
+
+.user-actions { display: flex; gap: 10px; }
+
+/* 共通ボタン */
+.btn-green {
+    background-color: #2d7d12;
+    color: white;
+    border: none;
+    padding: 6px 15px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 14px;
+    text-decoration: none;
+}
+.btn-green:hover { background-color: #24630e; }
+
+.status-bar {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #999;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* ジャンルボタン */
+.genre-links { text-align: center; margin-bottom: 25px; }
+.genre-row { margin-bottom: 8px; }
+.genre-row button {
+    margin: 0 3px; padding: 6px 10px; border: 1px solid #ccc;
+    background: white; cursor: pointer; border-radius: 4px; font-size: 12px;
+}
+.genre-row button.active { background: #2d7d12; color: white; border-color: #2d7d12; }
+
+/* ★横5個のグリッド★ */
+.store-grid-5x2 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5列に分割 */
+    gap: 12px;
+}
+
+/* 縦型カード */
+.store-card-vertical {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    transition: 0.2s;
+    height: 240px; 
+}
+.store-card-vertical:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+
+/* 画像エリア（カードの上半分） */
+.card-img-box { width: 100%; height: 150px; background: #f0f0f0; }
+.card-img-box img { width: 100%; height: 100%; object-fit: cover; }
+.no-image { height: 100%; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #999; }
+
+/* 情報エリア（カードの下半分） */
+.card-info { padding: 10px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+.card-info h3 { margin: 0; font-size: 0.95rem; color: #333; font-weight: bold; line-height: 1.2; }
+
+.card-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 5px; }
+.rating { font-size: 13px; font-weight: bold; color: #e67e22; }
+.address { font-size: 11px; color: #888; flex: 1; text-align: right; margin-left: 5px; }
+
+.text-ellipsis { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* ページネーション */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    gap: 8px;
+}
+
+.page-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #999;
+    background-color: #fff;
+    color: #666;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.page-btn.active {
+    background-color: #000 !important;
+    color: #fff !important;
+    border-color: #000 !important;
+    cursor: default;
+}
+
+.page-dots {
+    color: #666;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 0 5px;
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>企業ログイン</title>
+    
+    <link rel="stylesheet" href="/stylesheets/base.css">
+    <link rel="stylesheet" href="/stylesheets/form.css">
+    <link rel="stylesheet" href="/stylesheets/login_specific.css">
+</head>
+<body>
+    
+    <div class="main-content-wrapper">
+        <h1>企業ログイン</h1>
+        
+        <%# ★★★ メッセージはすべてフォームの外、h1の直後に配置 ★★★ %>
+        <%# エラーメッセージの表示 %>
+        <% if (typeof message !== 'undefined' && message) { %>
+            <p class="message error-message"><%= message %></p>
+        <% } %>
+
+        <%# 成功メッセージ（アカウント削除完了など）の表示 %>
+        <% if (typeof successMessage !== 'undefined' && successMessage) { %>
+            <p class="message success-message"><%= successMessage %></p>
+        <% } %>
+        <%# ★★★ ここまで ★★★ %>
+
+        <% if (typeof company !== 'undefined' && company) { %>
+            <p>ログイン中です。</p>
+            <p><a href="/dashboard">ダッシュボードへ戻る</a></p>
+        <% } else { %>
+            <form method="POST" action="/Cologin">
+                <%# ログインID入力欄 %>
+                <div class="input-container">
+                    <input type="text" name="login_id" placeholder="ログインID" required>
+                </div>
+                
+                <%# パスワード入力欄とアイコンボタン %>
+                <div class="input-container">
+                    <input type="password" name="password" id="login_password" placeholder="パスワード" required>
+                    <button type="button" class="toggle-password" onclick="togglePasswordVisibility('login_password', this)">👁️</button>
+                </div>
+                
+                <button type="submit">ログイン</button>
+            </form>
+        <% } %>
+
+        <p>
+            <a href="/register">新規登録はこちら</a>
+        </p>
+    </div>
+    
+    <script src="/javascripts/login.js"></script>
+</body>
+</html>

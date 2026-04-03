@@ -1,0 +1,70 @@
+/* store_detail_layout.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; /* ページ全体の背景色を追加 */
+    margin: 0;
+}
+
+.container { 
+    max-width: 1000px; 
+    margin: 0 auto; 
+    padding: 20px; 
+}
+
+/* 画像コンテナの共通スタイル (動的な padding-top はEJSに残す) */
+.store-image-container {
+    margin: 20px 0;
+    width: 100%; 
+    position: relative; 
+    /* padding-top: [動的な値] はEJSに記述 */
+    overflow: hidden; 
+    border: 1px solid #ddd; 
+}
+
+.store-image {
+    position: absolute;
+    top: 0;
+    left: 0; 
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block; 
+}
+
+/* メニューテーブルのスタイル */
+.menu-table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    margin-top: 15px; 
+}
+
+.menu-table th, .menu-table td { 
+    border: 1px solid #ddd; 
+    padding: 10px; 
+    text-align: left; 
+}
+
+.menu-table th { 
+    background-color: #f4f4f4; 
+}
+
+/* アクションボタンのスタイル */
+.action-buttons button, .action-buttons a { 
+    padding: 8px 15px; 
+    margin-right: 10px; 
+}
+
+/* メニュー削除フォームのスタイル */
+.menu-table form {
+    display: inline;
+}
+.menu-table form button[type="submit"] {
+    /* 埋め込みスタイルを移動: リンクのように見せる */
+    background: none; 
+    border: none; 
+    color: blue; 
+    cursor: pointer; 
+    text-decoration: underline; 
+    padding: 0;
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>企業ダッシュボード</title>
+<link rel="stylesheet" href="/stylesheets/base.css">
+<link rel="stylesheet" href="/stylesheets/dashboard.css">
+</head>
+<body>
+    <header class="header-container">
+        <a href="/Clogout" class="header-link">ログアウト</a>
+    </header>
+    
+    <div class="main-content-wrapper dashboard with-header">
+        <h1>企業ダッシュボード</h1>
+        
+        <%# ★★★ 成功メッセージの表示 ★★★ %>
+        <% if (typeof successMessage !== 'undefined' && successMessage) { %>
+            <p style="color: green; font-weight: bold;"><%= successMessage %></p>
+        <% } %>
+        
+        <%# 企業情報セクション %>
+        <div>
+            <p><strong>企業名:</strong> <%= company.name || '未登録' %></p>
+            <p><strong>住所:</strong> <%= company.address || '未登録' %></p>
+            <p><strong>連絡先:</strong> <%= company.contact || '未登録' %></p>
+            <a href="/company/profile/edit">企業情報編集</a><br>
+            <a href="/password-change">パスワード変更</a><br>
+        </div>
+
+        <hr>
+
+        <%# 店舗一覧セクション %>
+        <h2>店舗一覧</h2>
+        <a href="/stores/new">店舗を新規登録</a>
+
+        <% if (stores.length > 0) { %>
+            <ul>
+                <% stores.forEach(store => { %>
+                <li>
+                    <a href="/stores/<%= store.store_id %>"><%= store.name || '未登録' %></a>
+                </li>
+                <% }); %>
+            </ul>
+        <% } else { %>
+            <p>店舗は登録されていません。</p>
+        <% } %>
+
+        <hr>
+        <p>アカウントを削除される場合は、以下リンクよりアカウント削除画面に進んでください</p>
+        <a href="/delete-account">アカウント削除へ</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>店舗一覧 | Meshi-Quest</title>
+    <link rel="stylesheet" href="/style/storeIndex.css">
+</head>
+<body>
+    <div class="main-container">
+        <div class="header-container">
+            <h1 class="project-title">Meshi-Quest</h1>
+            <p class="subtitle">〜至高の一皿を探求する、グルメ特化型ログアプリ〜</p>
+            
+            <div class="header-top-right">
+                <div class="search-box">
+                    <form action="/storeInfo" method="GET">
+                        <input type="text" name="search" placeholder="店名で検索" value="<%= locals.searchKeyword || '' %>">
+                        <button type="submit" class="btn-green">検索</button>
+                    </form>
+                </div>
+                <div class="user-actions">
+                    <% if (locals.isLoggedIn) { %>
+                        <button type="button" class="btn-green" onclick="location.href='/login/userinfo'">マイページ</button>
+                        <form action="/logout" method="POST" style="display:inline;">
+                            <button type="submit" class="btn-green">ログアウト</button>
+                        </form>
+                    <% } else { %>
+                        <button type="button" class="btn-green" onclick="location.href='/login'">ログイン</button>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+
+        <div class="status-bar">
+            <span>
+                ログイン中: 
+                <strong>
+                    <% if (locals.userId) { %>
+                        <%= userId %>
+                    <% } else if (locals.loginUser) { %>
+                        <%= loginUser %>
+                    <% } else if (locals.LogUser) { %>
+                        <%= LogUser %>
+                    <% } else { %>
+                        ゲスト
+                    <% } %>
+                </strong> さん
+            </span>
+        </div>
+
+        <div class="store-index-content">
+            <div class="genre-links" id="genreButtons">
+                <div class="genre-row">
+                    <button type="button" data-genre="すべて" onclick="filterGenre('すべて')">すべて</button>
+                    <button type="button" data-genre="和食" onclick="filterGenre('和食')">和食</button>
+                    <button type="button" data-genre="洋食" onclick="filterGenre('洋食')">洋食</button>
+                    <button type="button" data-genre="中華料理" onclick="filterGenre('中華料理')">中華料理</button>
+                    <button type="button" data-genre="アジア" onclick="filterGenre('アジア')">アジア</button>
+                    <button type="button" data-genre="カフェ" onclick="filterGenre('カフェ')">カフェ</button>
+                    <button type="button" data-genre="バー" onclick="filterGenre('バー')">バー</button>
+                    <button type="button" data-genre="その他レストラン" onclick="filterGenre('その他レストラン')">その他レストラン</button>
+                    <% if (locals.isLoggedIn) { %>
+                        <button type="button" data-filter="favorites" onclick="filterFavorites()" class="btn-fav">お気に入り</button>
+                    <% } %>
+                </div>
+            </div>
+
+            <div class="store-grid-5x2">
+                <% if (locals.stores && stores.length > 0) { %>
+                    <% stores.forEach(store => { %>
+                        <div class="store-card-vertical" onclick="location.href='/storeInfo/<%= store.store_id %>'">
+                            <div class="card-img-box">
+                                <% if (store.image_url) { %>
+                                    <img src="<%= store.image_url %>" alt="<%= store.name %>">
+                                <% } else { %>
+                                    <div class="no-image">No Image</div>
+                                <% } %>
+                            </div>
+                            <div class="card-info">
+                                <h3 class="text-ellipsis"><%= store.name %></h3>
+                                <div class="card-footer">
+                                    <span class="rating">
+                                        <% if (store.average_score) { %>
+                                            ★<%= parseFloat(store.average_score).toFixed(1) %>
+                                        <% } else { %>
+                                            --
+                                        <% } %>
+                                    </span>
+                                    <span class="address text-ellipsis"><%= store.address %></span>
+                                </div>
+                            </div>
+                        </div>
+                    <% }); %>
+                <% } %>
+            </div>
+            
+            <div class="pagination">
+                <% 
+                    let current = Number(locals.currentPage) || 1;
+                    let total = Number(locals.totalPages) || 1;
+                    let range = 1;
+                %>
+                <% if (current > 1) { %>
+                    <button class="page-btn" onclick="changePage(<%= current - 1 %>)">&lt;</button>
+                <% } %>
+                <% for (let i = 1; i <= total; i++) { %>
+                    <% if (i === 1 || i === total || (i >= current - range && i <= current + range)) { %>
+                        <button class="page-btn <%= i === current ? 'active' : '' %>" onclick="changePage(<%= i %>)"><%= i %></button>
+                    <% } else if (i === current - range - 1 || i === current + range + 1) { %>
+                        <span class="page-dots">...</span>
+                    <% } %>
+                <% } %>
+                <% if (current < total) { %>
+                    <button class="page-btn" onclick="changePage(<%= current + 1 %>)">&gt;</button>
+                <% } %>
+            </div>
+        </div>
+
+        <div class="footer-nav" style="text-align: center; margin-top: 30px;">
+            <button type="button" class="btn-green" onclick="location.href='/'">TOPへ戻る</button>
+        </div>
+    </div>
+
+    <script>
+        function changePage(page) {
+            const url = new URL(window.location);
+            url.searchParams.set('page', page);
+            window.location.href = url.toString();
+        }
+
+        window.onload = function() {
+            const params = new URLSearchParams(window.location.search);
+            const currentGenre = params.get('genre'); // genreパラメータを取得
+            const currentFilter = params.get('filter'); // filterパラメータを取得
+            const buttons = document.querySelectorAll('#genreButtons button');
+
+            buttons.forEach(btn => {
+                let isActive = false;
+
+                // 1. お気に入りモードの判定
+                if (currentFilter === 'favorites' && btn.getAttribute('data-filter') === 'favorites') {
+                    isActive = true;
+                }
+                // 2. ジャンル選択の判定
+                else if (currentGenre && btn.getAttribute('data-genre') === currentGenre) {
+                    isActive = true;
+                }
+                // 3. 何も選択されていない（デフォルト）時の「すべて」ボタン判定
+                else if (!currentGenre && !currentFilter && btn.getAttribute('data-genre') === 'すべて') {
+                    isActive = true;
+                }
+
+                // クラスの付け外し
+                if (isActive) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        };
+
+        function filterGenre(genre) {
+            const url = new URL(window.location);
+            url.searchParams.set('page', 1);
+            
+            // ジャンルを選ぶときは「お気に入りモード」を解除
+            url.searchParams.delete('filter'); 
+            
+            if (genre === 'すべて') {
+                url.searchParams.delete('genre');
+            } else {
+                url.searchParams.set('genre', genre);
+            }
+            window.location.href = url.toString();
+        }
+
+        function filterFavorites() {
+            const url = new URL(window.location);
+            url.searchParams.set('page', 1);
+            url.searchParams.set('filter', 'favorites');
+            
+            // お気に入りを選ぶときは「ジャンル指定」を解除
+            url.searchParams.delete('genre'); 
+            
+            window.location.href = url.toString();
+        }
+    </script>
+</body>
+</html>

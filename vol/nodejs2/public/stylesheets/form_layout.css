@@ -1,0 +1,85 @@
+/* form_layout.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0; 
+    padding: 0;
+    background-color: #f4f4f4; /* 背景色 */
+}
+
+/* ★★★ ヘッダー関連（編集画面用） ★★★ */
+.header-container {
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    background-color: white; 
+}
+
+.header-link {
+    margin-left: 10px;
+}
+
+/* ★★★ メインコンテンツのラッパー (中央寄せの核) ★★★ */
+.main-content-wrapper {
+    max-width: 500px; 
+    /* 画面上部からの余白を確保し、中央寄せ */
+    margin: 50px auto; 
+    padding: 30px;
+    background-color: white; 
+    border-radius: 8px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+}
+
+/* ★★★ テキストの中央寄せ ★★★ */
+.main-content-wrapper h1, 
+.main-content-wrapper p, 
+.main-content-wrapper a {
+    text-align: center;
+}
+
+/* ★★★ フォーム部品の共通設定 ★★★ */
+
+/* フォームの各行のコンテナ */
+form div {
+    margin-bottom: 15px;
+}
+
+/* ラベルのスタイル */
+form label {
+    width: 250px;
+    display: block; 
+    margin: 0 auto 5px auto;
+    text-align: left;
+    font-weight: bold;
+}
+
+/* フォーム入力要素のスタイル */
+form input {
+    width: 250px;
+    display: block; 
+    margin: 0 auto;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Submitボタンのスタイル */
+form button[type="submit"] {
+    width: 250px;
+    display: block;
+    margin: 20px auto 10px auto; 
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #5cb85c;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+}
+
+form button[type="submit"]:hover {
+    background-color: #4cae4c;
+}

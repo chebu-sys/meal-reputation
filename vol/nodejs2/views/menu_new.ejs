@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title><%= store.name %> のメニュー新規追加</title>
+    <style>
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="/dashboard">ダッシュボードへ戻る</a> | 
+            <a href="/stores/<%= store.store_id %>"><%= store.name %> の詳細へ戻る</a>
+        </header>
+        
+        <h1><%= store.name %> のメニュー新規追加</h1>
+
+        <form action="/stores/<%= store.store_id %>/menus/new" method="POST">
+            
+            <label for="menu_name">メニュー名:</label>
+            <input type="text" id="menu_name" name="menu_name" required><br><br>
+
+            <label for="price">価格 (円):</label>
+            <input type="number" id="price" name="price" required min="0" step="1"><br><br>
+
+            <button type="submit">メニューを登録</button>
+        </form>
+    </div>
+</body>
+</html>

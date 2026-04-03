@@ -1,0 +1,626 @@
+/* --- ベーススタイル (Tailwind normalize の代替) --- */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #1f2937; /* Gray 800 */
+    background-color: #f3f4f6; /* Gray 100 */
+    line-height: 1.5;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.min-h-screen-center {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+/* --- カラーパレットの定義 (Tailwind風) --- */
+/* 変数を使って色を管理すると、将来的に色の変更が容易になります */
+:root {
+    --indigo-50: #eef2ff;
+    --indigo-100: #e0e7ff;
+    --indigo-200: #c7d2fe;
+    --indigo-300: #a5b4fc;
+    --indigo-600: #4f46e5;
+    --indigo-700: #4338ca;
+    --indigo-800: #3730a3;
+    --purple-600: #9333ea;
+    --green-50: #ecfdf5;
+    --green-300: #a7f3d0;
+    --green-600: #059669;
+    --green-800: #065f46;
+    --blue-50: #eff6ff;
+    --blue-200: #bfdbfe;
+    --blue-600: #2563eb;
+}
+
+
+/* ================================================= */
+/* 1. フォームセクション (registFrag = 1) */
+/* ================================================= */
+
+.form-container {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 0.75rem; /* rounded-xl */
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); /* shadow-2xl */
+    width: 100%;
+    max-width: 48rem; /* max-w-4xl */
+    border: 1px solid var(--indigo-200);
+}
+
+.form-title {
+    font-size: 1.875rem; /* text-3xl */
+    font-weight: 700; /* font-bold */
+    text-align: center;
+    color: var(--indigo-700);
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--indigo-100);
+}
+
+.form-img-section {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* 画像プレビュー（中サイズ） */
+.profile-img-md {
+    width: 8rem; /* w-32 */
+    height: 8rem; /* h-32 */
+    border-radius: 9999px; /* rounded-full */
+    object-fit: cover;
+    margin: 0 auto 1rem;
+    border: 4px solid var(--indigo-300);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); /* shadow-md */
+}
+
+.profile-img-default-md {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 9999px;
+    background-color: #e5e7eb; /* Gray 200 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6b7280; /* Gray 500 */
+    margin: 0 auto 1rem;
+    border: 4px solid var(--indigo-300);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.icon-lg {
+    width: 4rem; /* h-16 w-16 */
+    height: 4rem;
+}
+
+.img-change-label {
+    display: block;
+    font-size: 0.875rem; /* text-sm */
+    color: #4b5563; /* Gray 600 */
+    margin-top: 0.5rem;
+}
+
+.btn-img-change {
+    cursor: pointer;
+    background-color: var(--indigo-100);
+    color: var(--indigo-700);
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    transition: background-color 0.15s ease-in-out;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.btn-img-change:hover {
+    background-color: var(--indigo-200);
+}
+
+.form-fields-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem; /* space-y-5 */
+}
+
+.form-field-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* grid-cols-3, col-span-1, col-span-2 の代替 */
+    gap: 1rem; /* gap-4 */
+    align-items: center;
+    background-color: #f9fafb; /* Gray 50 */
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    border: 1px solid #f3f4f6; /* Gray 100 */
+}
+
+.field-label {
+    display: block;
+    color: #374151; /* Gray 700 */
+    font-weight: 500; /* font-medium */
+}
+
+.required-label::after {
+    content: "(必須)";
+    color: #ef4444; /* Red 500 */
+    font-size: 0.75rem; /* text-xs */
+    margin-left: 0.25rem;
+}
+
+.field-input-area {
+    /* grid-cols-2の代替はfood-options-gridで別途定義 */
+}
+
+.input-text, .input-select, .input-textarea {
+    padding: 0.5rem;
+    width: 100%;
+    border: 1px solid #d1d5db; /* Gray 300 */
+    border-radius: 0.375rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.input-text:focus, .input-select:focus, .input-textarea:focus {
+    border-color: var(--indigo-500);
+    box-shadow: 0 0 0 1px var(--indigo-500); /* focus:ring-indigo-500 */
+    outline: none;
+}
+
+.input-textarea {
+    resize: vertical;
+}
+
+/* グルメのチェックボックスエリア */
+.food-options-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* grid-cols-2 */
+    gap: 0.5rem 1.5rem; /* gap-x-6 gap-y-2 */
+}
+
+.checkbox-label {
+    display: inline-flex;
+    align-items: center;
+}
+
+.input-checkbox {
+    /* Tailwindの form-checkbox の代替 */
+    appearance: none;
+    width: 1rem;
+    height: 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.125rem; /* rounded-sm */
+    color: var(--indigo-600);
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.input-checkbox:checked {
+    background-color: var(--indigo-600);
+    border-color: var(--indigo-600);
+    box-shadow: inset 0 0 0 4px white; /* チェックマークの視覚効果 */
+}
+
+.ml-2-text {
+    margin-left: 0.5rem;
+    color: #374151; /* Gray 700 */
+}
+
+.other-food-container {
+    margin-top: 1rem;
+    grid-column: 1 / span 2; /* グリッドの全幅を使用 */
+}
+
+/* フォームのアクションボタン */
+.form-actions {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-primary {
+    background-color: var(--indigo-600);
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    transition: background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); /* shadow-lg */
+    font-size: 1.125rem; /* text-lg */
+    font-weight: 600; /* font-semibold */
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: var(--indigo-700);
+}
+
+.btn-link {
+    color: #4b5563; /* Gray 600 */
+    transition: color 0.15s ease-in-out;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.btn-link:hover {
+    color: var(--indigo-600);
+}
+
+
+/* ================================================= */
+/* 2. 閲覧セクション (registFrag != 1) */
+/* ================================================= */
+
+.user-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 64rem; /* max-w-5xl */
+    border: 1px solid var(--indigo-200);
+}
+
+.user-header {
+    position: relative;
+    background: linear-gradient(to right, var(--indigo-500), var(--purple-600));
+    color: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem 0.5rem 0 0; /* rounded-t-lg */
+    margin: -2rem -2rem 2rem; /* -mx-8 -mt-8 mb-8 */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); /* shadow-lg */
+}
+
+.user-name {
+    font-size: 1.875rem; /* text-3xl */
+    font-weight: 800; /* font-extrabold */
+    display: flex;
+    align-items: center;
+}
+
+.icon-lg-white {
+    width: 2rem;
+    height: 2rem;
+    margin-right: 0.75rem;
+    opacity: 0.8;
+}
+
+.btn-edit {
+    background-color: white;
+    color: var(--indigo-700);
+    padding: 0.5rem 1.5rem;
+    border-radius: 9999px;
+    transition: background-color 0.15s ease-in-out;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); /* shadow-md */
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.btn-edit:hover {
+    background-color: #f3f4f6; /* gray-100 */
+}
+
+.icon-sm-inline {
+    height: 1.25rem;
+    width: 1.25rem;
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+.user-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) { /* md: */
+    .user-grid {
+        grid-template-columns: 1fr 2fr; /* md:grid-cols-3, md:col-span-2 の代替 */
+    }
+    .user-main-content {
+        grid-column: 2 / 4; /* 2列目以降の全幅 */
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem; /* space-y-6 */
+    }
+}
+
+/* サイドバー */
+.user-sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    background-color: rgba(238, 242, 255, 0.7); /* indigo-50 with opacity */
+    border: 1px solid var(--indigo-100);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* 画像プレビュー（大サイズ） */
+.profile-img-lg {
+    width: 10rem; /* w-40 */
+    height: 10rem; /* h-40 */
+    border-radius: 9999px;
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+    border: 4px solid white;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1); /* shadow-xl */
+}
+
+.profile-img-default-lg {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 9999px;
+    background-color: var(--indigo-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--indigo-700);
+    margin-bottom: 1.5rem;
+    border: 4px solid white;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+.user-info-detail {
+    text-align: left;
+    width: 100%;
+    color: var(--indigo-900);
+    border-top: 1px solid var(--indigo-200);
+    padding-top: 1rem;
+    margin-top: 0.5rem;
+}
+
+.user-id-text {
+    font-size: 0.875rem; /* text-sm */
+    color: var(--indigo-700);
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.icon-sm {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+    color: var(--indigo-500);
+}
+
+.user-id-value {
+    font-weight: 600;
+    color: var(--indigo-800);
+    margin-left: 0.5rem;
+}
+
+.info-separator {
+    border-bottom: 1px solid var(--indigo-200);
+    padding-bottom: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.info-gender, .info-location {
+    font-size: 1.125rem; /* text-lg */
+    display: flex;
+    align-items: center;
+    color: var(--indigo-800);
+}
+
+.icon-md {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: 0.5rem;
+    color: var(--indigo-500);
+}
+
+.font-bold-text {
+    font-weight: 700;
+    margin-left: 0.5rem;
+}
+
+.mr-2-text {
+    margin-right: 0.5rem;
+}
+
+.info-food-section {
+    padding-top: 0.5rem;
+}
+
+.info-food-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--indigo-700);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.info-food-content {
+    font-size: 1rem;
+    color: var(--indigo-800);
+    line-height: 1.6;
+    padding: 0.75rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    border: 1px solid #e5e7eb; /* Gray 200 */
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06); /* shadow-inner */
+    padding-left: 1.75rem; /* ul/liの代替としてインデント */
+}
+
+/* レビュー統計 */
+.stat-box {
+    border: 1px solid var(--green-300);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    background-color: rgba(240, 253, 244, 0.7); /* green-50 with opacity */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.stat-box-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--green-800);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.icon-md-stat {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--green-600);
+    margin-right: 0.5rem;
+}
+
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    text-align: center;
+    border: 1px solid #e5e7eb;
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+}
+
+.stat-number {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--indigo-600);
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: #4b5563; /* Gray 700 */
+    margin-top: 0.25rem;
+}
+
+/* 自己紹介 */
+.bio-box {
+    border: 1px solid var(--indigo-200);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    background-color: rgba(238, 242, 255, 0.7);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.bio-box-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--indigo-800);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.bio-content {
+    padding: 1rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    min-height: 7.5rem; /* min-h-[120px] */
+    color: #374151; /* Gray 800 */
+    border: 1px solid var(--indigo-300);
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+    line-height: 1.6;
+}
+
+/* アクティビティ履歴 */
+.activity-box {
+    background-color: rgba(239, 246, 255, 0.7); /* blue-50 with opacity */
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--blue-200);
+}
+
+.activity-box-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #374151; /* Gray 800 */
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e5e7eb; /* Gray 200 */
+    padding-bottom: 0.75rem;
+}
+
+.icon-md-activity {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--blue-600);
+    margin-right: 0.5rem;
+}
+
+.activity-detail {
+    font-size: 1rem;
+    color: #374151; /* Gray 800 */
+    margin-left: 1.75rem;
+    border-left: 4px solid #9ca3af; /* Gray 400 */
+    padding-left: 1rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+}
+
+.activity-date {
+    font-weight: 800;
+    color: var(--indigo-600);
+    margin-left: 0.25rem;
+}
+
+
+/* フッターアクション */
+.user-actions-footer {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-secondary {
+    background-color: #d1d5db; /* Gray 300 */
+    color: #4b5563; /* Gray 700 */
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    transition: background-color 0.15s ease-in-out;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    font-size: 1.125rem;
+    font-weight: 600;
+    text-decoration: none;
+    margin-bottom: 1.5rem;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-secondary:hover {
+    background-color: #9ca3af; /* Gray 400 */
+}
+
+.btn-delete-account {
+    font-size: 1rem;
+    color: #ef4444; /* Red 500 */
+    transition: color 0.15s ease-in-out;
+    text-decoration: underline;
+    outline: none;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb; /* Gray 200 */
+    width: 100%;
+    max-width: 12rem; /* max-w-xs */
+    text-align: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-delete-account:hover {
+    color: #b91c1c; /* Red 700 */
+}

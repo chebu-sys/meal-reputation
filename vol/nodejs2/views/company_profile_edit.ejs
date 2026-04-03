@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>企業情報編集</title>
+    
+    <%# ★★★ 修正箇所: スタイルを埋め込みから外部ファイルへ変更 ★★★ %>
+    <link rel="stylesheet" href="/stylesheets/form_layout.css">
+    
+</head>
+<body>
+    <header class="header-container">
+        <a href="/dashboard" class="header-link">ダッシュボードへ戻る</a>
+        <a href="/Clogout" class="header-link">ログアウト</a>
+    </header>
+    
+    <div class="main-content-wrapper">
+        <h1>企業情報編集</h1>
+        <p>企業情報を編集してください。</p>
+        <% if (typeof message !== 'undefined' && message) { %>
+            <p style="color:red;"><%= message %></p>
+        <% } %>
+
+        <form method="POST" action="/company/profile/edit">
+            <div>
+                <label for="name">企業名：</label>
+                <input type="text" id="name" name="name" value="<%= company.name || '' %>" required>
+            </div>
+            <div>
+                <label for="address">住所：</label>
+                <input type="text" id="address" name="address" value="<%= company.address || '' %>">
+            </div>
+            <div>
+                <label for="contact">連絡先：</label>
+                <input type="tel" id="contact" name="contact" value="<%= company.contact || '' %>">
+            </div>
+            <div>
+                <button type="submit">更新</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

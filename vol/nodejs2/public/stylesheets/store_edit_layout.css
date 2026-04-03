@@ -1,0 +1,124 @@
+/* store_edit_layout.css */
+
+body {
+    background-color: #f4f4f4; 
+    font-family: Arial, sans-serif; 
+    margin: 0;
+    padding: 0;
+}
+
+/* ヘッダー全体をラップするコンテナ */
+.header-container {
+    display: flex;
+    justify-content: flex-end; /* リンクを右寄せ */
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    background-color: white; 
+}
+
+/* ヘッダー内の各リンク */
+.header-link {
+    margin-left: 10px;
+}
+
+/* メインコンテンツのラッパー: 画面中央に配置するボックス */
+.main-content-wrapper {
+    max-width: 600px; /* フォームの最大幅を設定 */
+    margin: 30px auto; /* 左右autoで中央寄せ、上下にマージン */
+    padding: 20px 30px;
+    background-color: white; 
+    border-radius: 8px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+}
+
+/* タイトルを中央揃え */
+.main-content-wrapper h1 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* フォームの各行のラベルと入力要素を中央配置 */
+form div {
+    margin-bottom: 15px;
+    text-align: center; /* div内の要素を中央揃えするための補助 */
+}
+
+/* ラベルのスタイル */
+form label {
+    width: 80%; 
+    max-width: 400px;
+    display: block; 
+    margin: 0 auto 5px auto; 
+    text-align: left; /* テキスト自体は左寄せ */
+    font-weight: bold;
+}
+
+/* 入力要素、セレクトボックス、テキストエリアのスタイル */
+form input[type="text"], 
+form input[type="file"],
+form select,
+form textarea {
+    width: 80%;
+    max-width: 400px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: block; 
+    margin: 0 auto; /* 中央寄せ */
+}
+
+form textarea {
+    min-height: 100px;
+}
+
+/* ボタンのスタイル (保存ボタン) */
+form button[type="submit"] {
+    width: 80%;
+    max-width: 400px;
+    display: block;
+    margin: 30px auto 0 auto; /* 中央寄せ */
+    padding: 10px;
+    background-color: #007bff; 
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+}
+
+/* 現在の画像と削除チェックボックスのブロックを中央寄せ */
+.current-image-section {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.current-image-section img {
+    max-width: 200px;
+    height: auto;
+    display: block; /* 画像をブロック要素化して中央寄せ */
+    margin: 10px auto;
+    border: 1px solid #ddd;
+}
+
+.current-image-section p {
+    text-align: center;
+}
+
+/* 店舗削除セクションのスタイル */
+.delete-section {
+    text-align: center; /* フォームとボタンを中央寄せ */
+    margin-top: 30px;
+    padding-top: 15px;
+}
+
+/* 店舗削除ボタンのスタイル */
+.delete-store-button {
+    background-color: #f44336; 
+    color: white; 
+    border: none; 
+    padding: 10px 15px; 
+    cursor: pointer;
+    border-radius: 4px;
+}
