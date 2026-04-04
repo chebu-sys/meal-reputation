@@ -23,6 +23,10 @@ services:
     image: env-web:latest
     container_name: nodejs
     tty: true
+    # --- 修正ポイント ---
+    working_dir: /home/node/projects/webtest
+    command: node src/server.js
+    # ------------------
     environment:
       - CHOKIDAR_USEPOLLING=true
     ports:
@@ -35,6 +39,10 @@ services:
     image: env-web:latest
     container_name: nodejs2
     tty: true
+    # --- 修正ポイント ---
+    working_dir: /home/node/projects
+    command: node src/index.js
+    # ------------------
     environment:
       - CHOKIDAR_USEPOLLING=true
     ports:
