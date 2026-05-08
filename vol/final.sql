@@ -1,0 +1,12 @@
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE IF EXISTS `review_likes`, `userinfo`, `favorites`, `ratings`, `menus`, `stores`, `companies`, `users`;
+SET FOREIGN_KEY_CHECKS=1;
+
+CREATE TABLE `users` (`id` varchar(50) PRIMARY KEY, `password` varchar(255) NOT NULL);
+CREATE TABLE `companies` (`company_id` int PRIMARY KEY AUTO_INCREMENT, `login_id` varchar(255) UNIQUE NOT NULL, `password` varchar(255) NOT NULL, `name` varchar(255), `address` varchar(255), `contact` varchar(255), `created_at` timestamp DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE `stores` (`store_id` int PRIMARY KEY AUTO_INCREMENT, `company_id` int, `name` varchar(255), `address` varchar(255), `phone_number` varchar(20), `image_url` varchar(255), `description` text, `genre` varchar(50), `image_width` int, `image_height` int, FOREIGN KEY (`company_id`) REFERENCES `companies` (`company_id`) ON DELETE CASCADE);
+CREATE TABLE `menus` (`menu_id` int PRIMARY KEY AUTO_INCREMENT, `store_id` int NOT NULL, `menu_name` varchar(255) NOT NULL, `price` int NOT NULL, `created_at` timestamp DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY (`store_id`) REFERENCES `stores` (`store_id`) ON DELETE CASCADE);
+CREATE TABLE `ratings` (`rating_id` int PRIMARY KEY AUTO_INCREMENT, `user_id` varchar(255) NOT NULL, `store_id` int NOT NULL, `score` int NOT NULL, `comment` text, `review_image` varchar(255), `created_at` timestamp DEFAULT CURRENT_TIMESTAMP, `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE, FOREIGN KEY (`store_id`) REFERENCES `stores` (`store_id`) ON DELETE CASCADE);
+CREATE TABLE `favorites` (`id` int PRIMARY KEY AUTO_INCREMENT, `user_id` varchar(255), `store_id` int NOT NULL, `created_at` timestamp DEFAULT CURRENT_TIMESTAMP, UNIQUE KEY `unique_user_store` (`user_id`,`store_id`));
+CREATE TABLE `userinfo` (`user_id` varchar(50) PRIMARY KEY, `nickname` varchar(50), `gender` int, `bio` text, `region` varchar(50), `profile_image` varchar(255), `favorite_food` text, `last_login_at` datetime, FOREIGN KEY (`user_id`) REFERENCES `users` (`id`));
+CREATE TABLE `review_likes` (`liker_id` varchar(255), `rating_id` int, `created_at` datetime DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY (`liker_id`,`rating_id`), FOREIGN KEY (`liker_id`) REFERENCES `users` (`id`), FOREIGN KEY (`rating_id`) REFERENCES `ratings` (`rating_id`));

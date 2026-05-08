@@ -20,43 +20,42 @@ services:
       - shared-image-data:/usr/share/nginx/html/images:ro
 
   web:
-    image: env-web:latest
+    build: .
     container_name: nodejs
     tty: true
-    # --- 修正ポイント ---
     working_dir: /home/node/projects/webtest
     command: node src/server.js
-    # ------------------
     environment:
       - CHOKIDAR_USEPOLLING=true
     ports:
       - "3000:3000"
     volumes:
       - ./vol/nodejs:/home/node/projects
-      - shared-image-data:/images:ro
+      # ブラウザが画像を表示できるよう、マウント先を固定
+      - shared-image-data:/home/node/projects/webtest/public/images:rw
 
   web2:
-    image: env-web:latest
+    build: .
     container_name: nodejs2
     tty: true
-    # --- 修正ポイント ---
     working_dir: /home/node/projects
     command: node src/index.js
-    # ------------------
     environment:
       - CHOKIDAR_USEPOLLING=true
     ports:
       - "4000:4000"
     volumes:
       - ./vol/nodejs2:/home/node/projects
+      # Multerの保存先（アプリ側の設定）に合わせる
       - shared-image-data:/app_images
 
   db:
-    image: env-db:latest
+    image: mysql:8.0
     container_name: mysql
     tty: true
     environment:
       - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=MealReputation
     ports:
       - "3306:3306"
     volumes:
