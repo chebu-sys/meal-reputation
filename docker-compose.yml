@@ -27,6 +27,8 @@ services:
     command: node src/server.js
     environment:
       - CHOKIDAR_USEPOLLING=true
+      - DB_PASSWORD=${DB_PASSWORD}
+      - SESSION_SECRET=${WEB_SESSION_SECRET}
     ports:
       - "3000:3000"
     volumes:
@@ -42,6 +44,8 @@ services:
     command: node src/index.js
     environment:
       - CHOKIDAR_USEPOLLING=true
+      - DB_PASSWORD=${DB_PASSWORD}
+      - SESSION_SECRET=${COMPANY_SESSION_SECRET}
     ports:
       - "4000:4000"
     volumes:
@@ -54,7 +58,7 @@ services:
     container_name: mysql
     tty: true
     environment:
-      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
       - MYSQL_DATABASE=MealReputation
     ports:
       - "3306:3306"

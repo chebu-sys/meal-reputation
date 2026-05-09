@@ -2,11 +2,11 @@ const mysql = require('mysql2/promise');
 
 //------------------MYSQLの各値セット------------------//
 const pool = mysql.createPool({
-    connectionLimit: 10, // プールに保持するコネクションの最大数
+    connectionLimit: 10,
     host:'mysql', 
     user:'root',
-    password:'password',
-    database: 'MealReputation' // データベース名
+    password: process.env.DB_PASSWORD, 
+    database: 'MealReputation'
 });
 //----------------------------------------------------//
 

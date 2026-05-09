@@ -37,7 +37,7 @@ app.set("view engine", "ejs"); //
 
 // セッション設定
 app.use(session({
-    secret: 'company-secret', 
+    secret: process.env.SESSION_SECRET, 
     resave: false, 
     saveUninitialized: false, 
     cookie: { secure: false } ,

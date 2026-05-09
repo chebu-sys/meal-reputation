@@ -10,9 +10,10 @@ const mysql = require('mysql2/promise');
 const pool = mysql.createPool({
     host: 'mysql',       // データベースサーバーのホスト名
     user: 'root',        // データベースに接続するためのユーザー名
-    password: 'password',// ユーザーのパスワード
+    password: process.env.DB_PASSWORD, // ユーザーのパスワード
     database: 'MealReputation' // 接続するデータベース名
 });
+
 
 // 接続プールをモジュールとしてエクスポート
 // これにより、他のファイル（例: routes/auth.js, routes/companies.jsなど）から

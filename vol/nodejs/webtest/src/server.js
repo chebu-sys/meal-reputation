@@ -24,7 +24,7 @@ app.set("view engine", "ejs");
 
 // セッション設定
 app.use(session({
-  secret: 'your-secret-key',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
   name: 'connect.sid.3000'
